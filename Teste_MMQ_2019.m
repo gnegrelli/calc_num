@@ -2,10 +2,14 @@ clear all
 close all
 clc
 
-n = 100;
-m = 2;
-x = linspace(0.0,2*pi,n);
-f = sin(x);
+% n = 100;
+% m = 2;
+% x = linspace(0.0,2*pi,n);
+% f = sin(x);
+n = 6
+m = 1
+x = [-pi, -2*pi/3, -pi/3, 0, pi/3, 2*pi/3]
+f = [10.74, -.23, -6.81, -9, -6.81, -.23]
 
 % Construcao da matriz A
 for i = 1:m+1
@@ -14,8 +18,25 @@ for i = 1:m+1
     end
 end
 
-At = n*eye(m)
-At(1) = At(1)/2
+At = n*eye(m);
+At(1) = At(1)/2;
+
+% Coeficentes a
+for k = 0:m
+    b(k+1) = 0;
+    for i = 1:n
+        b(k+1) = b(k+1) + (2/n)*f(i)*cos(k*x(i));
+    end
+end
+
+% Coeficentes b
+for k = m+1:2*m
+    b(k+1) = 0;
+    for i = 1:n
+        b(k+1) = b(k+1) + (2/n)*f(i)*sin(k*x(i));
+    end
+end
+
 for k = 1:n
     
     % Vetor de pesos
