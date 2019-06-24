@@ -37,26 +37,39 @@ for k = m+1:2*m
     end
 end
 
-for k = 1:n
-    
-    % Vetor de pesos
-    for j = 1:n
-        w(j) = 1.0/((x(j) - x(k))^2+0.00001);
-        w(j) = 1.0;
-    end
-
-    % Calculo dos alfas
-    alfa = MMQ_2019(A,w,f');
-
-    
-    p(k) = 0.0;
-    for i = 1:m+1
-        p(k) = p(k) + alfa(i)*x(k)^(i-1);
-    end
-    
+% Calculo de Sm
+for i = 1:n
+   S(i) = b(1)/2;
+   for j = 1:m
+       S(i) = S(i) + b(j+1)*cos(j*x(i));
+   end
+   for j = 1:m
+       S(i) = S(i) + b(j+m+1)*sin(j*x(i));
+   end
 end
 
+S
+
+% for k = 1:n
+%     
+%     % Vetor de pesos
+%     for j = 1:n
+%         w(j) = 1.0/((x(j) - x(k))^2+0.00001);
+%         w(j) = 1.0;
+%     end
+% 
+%     % Calculo dos alfas
+%     alfa = MMQ_2019(A,w,f');
+% 
+%     
+%     p(k) = 0.0;
+%     for i = 1:m+1
+%         p(k) = p(k) + alfa(i)*x(k)^(i-1);
+%     end
+%     
+% end
+
 hold on
-plot(x,f,'b');
-plot(x,p,'r.');
+plot(x,f,'b.');
+plot(x,S,'r--');
 hold off
