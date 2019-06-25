@@ -14,8 +14,7 @@ for i = 1:m+1
     end
 end
 
-At = n*eye(m);
-At(1) = At(1)/2;
+A
 
 % Coeficentes a
 for j = 0:m
