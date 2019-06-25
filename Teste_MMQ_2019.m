@@ -2,10 +2,10 @@ clear all
 close all
 clc
 
-n = 12;
-m = 7;
+n = 6;
+m = 1;
 x = linspace(0.0,2*pi,n);
-f = sin(x) + 3*cos(7*x);
+f = cos(x);
 
 % Construcao da matriz A
 for i = 1:m+1
@@ -25,7 +25,6 @@ for j = 0:m
     end
 end
 
-
 % Coeficentes b
 for j = 1:m
     b(j) = 0;
@@ -35,20 +34,22 @@ for j = 1:m
 end
 
 % Agrupando os coeficientes
-c = [a, b]
+c = [a, b];
+
+xs = linspace(x(1), x(end), 500);
 
 % Calculo de Sm
-for i = 1:n
+for i = 1:size(xs, 2)
    S(i) = c(1)/2;
    for j = 1:m
-       S(i) = S(i) + c(j+1)*cos(j*x(i));
+       S(i) = S(i) + c(j+1)*cos(j*xs(i));
    end
    for j = 1:m
-       S(i) = S(i) + c(j+m+1)*sin(j*x(i));
+       S(i) = S(i) + c(j+m+1)*sin(j*xs(i));
    end
 end
 
 hold on
 plot(x,f,'b.');
-plot(x,S,'r--');
+plot(xs,S,'r--');
 hold off
