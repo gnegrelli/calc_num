@@ -2,7 +2,7 @@ clear all
 close all
 clc
 
-n = 6;
+n = 100;
 m = 1;
 x = linspace(0.0,2*pi,n);
 f = cos(x);
@@ -13,8 +13,6 @@ for i = 1:m+1
         A(j,i) = x(j)^(i-1);
     end
 end
-
-A
 
 % Coeficentes a
 for j = 0:m
